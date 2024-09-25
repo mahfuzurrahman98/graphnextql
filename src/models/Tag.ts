@@ -1,13 +1,15 @@
-// models/Category.ts
-import Database from '@/lib/Database';
-const db = Database.getInstance();
+import { Model, model, models, Schema } from "mongoose";
+import { ITag } from "@/utils/interfaces"; // Assuming you have an ITag interface
 
-const tagSchema = new db.Schema(
+// Define the schema
+const tagSchema: Schema<ITag> = new Schema(
     {
         name: { type: String, required: true },
     },
     { timestamps: true }
 );
 
-const Category = db.models.Category || db.model('Category', tagSchema);
-export default Category;
+// Check if the model exists, if not create it
+const Tag = (models.Tag as Model<ITag>) || model<ITag>("Tag", tagSchema);
+
+export default Tag;

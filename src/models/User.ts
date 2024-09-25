@@ -1,16 +1,21 @@
 // models/User.ts
-import Database from '@/lib/Database';
-const db = Database.getInstance();
+import { IUser } from "@/utils/interfaces";
+import { Model, model, models, Schema } from "mongoose";
 
-const userSchema = new db.Schema(
+// Define the schema
+const userSchema: Schema<IUser> = new Schema(
     {
         name: { type: String, required: true },
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
-        role: { type: String, enum: ['admin'], default: 'admin' },
+        role: { type: String, enum: ["admin"], default: "admin" },
     },
     { timestamps: true }
 );
 
-const User = db.models.User || db.model('User', userSchema);
+const User =
+    models && models.User
+        ? (models.User as Model<IUser>)
+        : model<IUser>("User", userSchema);
+
 export default User;

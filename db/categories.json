@@ -1,0 +1,147 @@
+[{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d159c"
+  },
+  "name": "Technology",
+  "description": "All about tech and gadgets."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d159d"
+  },
+  "name": "Health",
+  "description": "Tips for staying healthy."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d159e"
+  },
+  "name": "Lifestyle",
+  "description": "Lifestyle and daily hacks."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d159f"
+  },
+  "name": "Finance",
+  "description": "Financial advice and news."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a0"
+  },
+  "name": "Travel",
+  "description": "Guides and travel experiences."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a1"
+  },
+  "name": "Food",
+  "description": "Recipes and food culture."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a2"
+  },
+  "name": "Education",
+  "description": "Learning tips and resources."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a3"
+  },
+  "name": "Entertainment",
+  "description": "Movies, music, and games."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a4"
+  },
+  "name": "Sports",
+  "description": "Sports news and updates."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a5"
+  },
+  "name": "Business",
+  "description": "Business insights and tips."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a6"
+  },
+  "name": "Parenting",
+  "description": "Advice on raising children."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a7"
+  },
+  "name": "Fashion",
+  "description": "Latest fashion trends and styles."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a8"
+  },
+  "name": "Photography",
+  "description": "Photo tips and tutorials."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a9"
+  },
+  "name": "Science",
+  "description": "Discoveries and scientific news."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15aa"
+  },
+  "name": "Art",
+  "description": "All about art and creativity."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15ab"
+  },
+  "name": "DIY",
+  "description": "Do it yourself guides and projects."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15ac"
+  },
+  "name": "Home Improvement",
+  "description": "Improving your living space."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15ad"
+  },
+  "name": "Pets",
+  "description": "Caring for pets."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15ae"
+  },
+  "name": "Fitness",
+  "description": "Exercise and fitness tips."
+},
+{
+  "_id": {
+    "$oid": "66e7d3d808a8a7e2eb8d15af"
+  },
+  "name": "Gaming",
+  "description": "Latest in gaming and e-sports."
+},
+{
+  "_id": {
+    "$oid": "66e7d42e08a8a7e2eb8d15b0"
+  },
+  "name": "Programming",
+  "description": "Resources, tutorials, and news for software development, coding, and best practices in various programming languages."
+}]

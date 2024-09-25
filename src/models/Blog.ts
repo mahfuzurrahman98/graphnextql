@@ -1,17 +1,23 @@
-// models/Blog.ts
-import Database from '@/lib/Database';
-const db = Database.getInstance();
+import { Model, model, models, Schema } from "mongoose";
+import { IBlog } from "@/utils/interfaces"; // Assuming you have an IBlog interface in the interfaces file
 
-const blogSchema = new db.Schema(
+// Define the schema
+const blogSchema: Schema<IBlog> = new Schema(
     {
         title: { type: String, required: true },
         content: { type: String, required: true },
-        author: { type: db.Schema.Types.ObjectId, ref: 'User', required: true },
+        author: { type: Schema.Types.ObjectId, ref: "User", required: true },
         tags: { type: [String] },
-        categories: { type: [String] },
+        category: {
+            type: Schema.Types.ObjectId,
+            ref: "Category",
+            required: true,
+        },
     },
     { timestamps: true }
 );
 
-const Blog = db.models.Blog || db.model('Blog', blogSchema);
+// Check if the model exists, if not create it
+const Blog = (models.Blog as Model<IBlog>) || model<IBlog>("Blog", blogSchema);
+
 export default Blog;

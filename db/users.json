@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "66e7f0e70bcdb4c474c77c06"
+  },
+  "name": "Mahfuz",
+  "email": "mahfuz@me.com",
+  "password": "$2a$10$0U8dXLm3JZ8urjBlrG2oF.LXaYreVTXeXXPOFc3ggppFPn82Y300K",
+  "role": "admin",
+  "createdAt": {
+    "$date": "2024-09-16T08:48:39.560Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-16T08:48:39.560Z"
+  },
+  "__v": 0
+}]

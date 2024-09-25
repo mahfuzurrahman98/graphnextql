@@ -1,0 +1,240 @@
+[{
+  "_id": {
+    "$oid": "66e7e1c508a8a7e2eb8d1659"
+  },
+  "title": "Top 5 JavaScript Best Practices for Clean Code",
+  "content": "Writing clean JavaScript code is essential for maintainability. Here are 5 best practices you should follow: 1. Use meaningful variable names, 2. Keep functions small and focused, 3. Avoid global variables, 4. Use comments judiciously, and 5. Stick to ES6+ features.",
+  "author": {
+    "$oid": "66e7f0e70bcdb4c474c77c06"
+  },
+  "tags": [
+    "JavaScript",
+    "Best Practices",
+    "Software Development"
+  ],
+  "createdAt": {
+    "$date": "2024-09-15T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T08:00:00.000Z"
+  },
+  "category": {
+    "$oid": "66e7d3d808a8a7e2eb8d159c"
+  }
+},
+{
+  "_id": {
+    "$oid": "66e7e1c508a8a7e2eb8d165a"
+  },
+  "title": "Getting Started with Python for Web Development",
+  "content": "Python is a versatile language and is great for web development when combined with frameworks like Django or Flask. In this blog, we will discuss how to set up a Python environment and create your first web project using Django.",
+  "author": {
+    "$oid": "66e7f0e70bcdb4c474c77c06"
+  },
+  "tags": [
+    "Python",
+    "Django",
+    "Web Development"
+  ],
+  "createdAt": {
+    "$date": "2024-09-15T08:15:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T08:15:00.000Z"
+  },
+  "category": {
+    "$oid": "66e7d3d808a8a7e2eb8d159c"
+  }
+},
+{
+  "_id": {
+    "$oid": "66e7e1c508a8a7e2eb8d165b"
+  },
+  "title": "How to Eat Healthy on a Budget",
+  "content": "Eating healthy doesn’t have to be expensive. In this blog, we explore some practical tips on how you can maintain a healthy diet while staying on budget. Learn how to plan meals, buy in bulk, and use seasonal produce.",
+  "author": {
+    "$oid": "66e7f0e70bcdb4c474c77c06"
+  },
+  "tags": [
+    "Healthy Eating",
+    "Budgeting",
+    "Food"
+  ],
+  "createdAt": {
+    "$date": "2024-09-15T08:30:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T08:30:00.000Z"
+  },
+  "category": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a1"
+  }
+},
+{
+  "_id": {
+    "$oid": "66e7e1c508a8a7e2eb8d165c"
+  },
+  "title": "Top 5 Travel Destinations for 2024",
+  "content": "Looking for your next adventure? Here are the top 5 travel destinations you should consider in 2024. From tropical beaches to cultural hotspots, these destinations offer something for everyone.",
+  "author": {
+    "$oid": "66e7f0e70bcdb4c474c77c06"
+  },
+  "tags": [
+    "Travel",
+    "Adventure",
+    "Tourism"
+  ],
+  "createdAt": {
+    "$date": "2024-09-15T08:45:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T08:45:00.000Z"
+  },
+  "category": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a0"
+  }
+},
+{
+  "_id": {
+    "$oid": "66e7e1c508a8a7e2eb8d165d"
+  },
+  "title": "5 Fitness Tips for Busy Professionals",
+  "content": "Staying fit while managing a busy work schedule can be challenging. Here are 5 simple fitness tips that you can incorporate into your daily routine to stay healthy and active without disrupting your workflow.",
+  "author": {
+    "$oid": "66e7f0e70bcdb4c474c77c06"
+  },
+  "tags": [
+    "Fitness",
+    "Health",
+    "Work-Life Balance"
+  ],
+  "createdAt": {
+    "$date": "2024-09-15T09:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T09:00:00.000Z"
+  },
+  "category": {
+    "$oid": "66e7d3d808a8a7e2eb8d159e"
+  }
+},
+{
+  "_id": {
+    "$oid": "66e7e1c508a8a7e2eb8d165e"
+  },
+  "title": "The Importance of Version Control in Programming",
+  "content": "Version control systems like Git help teams collaborate on code, track changes, and revert mistakes easily. In this blog, we'll explore the basic features of Git and how it can help streamline your development workflow.",
+  "author": {
+    "$oid": "66e7f0e70bcdb4c474c77c06"
+  },
+  "tags": [
+    "Git",
+    "Version Control",
+    "Software Development"
+  ],
+  "createdAt": {
+    "$date": "2024-09-15T09:15:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T09:15:00.000Z"
+  },
+  "category": {
+    "$oid": "66e7d3d808a8a7e2eb8d159c"
+  }
+},
+{
+  "_id": {
+    "$oid": "66e7e1c508a8a7e2eb8d165f"
+  },
+  "title": "How to Stay Healthy While Working from Home",
+  "content": "Working from home can be convenient, but it often leads to sedentary habits. In this blog, we provide tips on staying active, eating healthy, and maintaining mental well-being while working remotely.",
+  "author": {
+    "$oid": "66e7f0e70bcdb4c474c77c06"
+  },
+  "tags": [
+    "Work from Home",
+    "Health",
+    "Fitness"
+  ],
+  "createdAt": {
+    "$date": "2024-09-15T09:30:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T09:30:00.000Z"
+  },
+  "category": {
+    "$oid": "66e7d3d808a8a7e2eb8d159d"
+  }
+},
+{
+  "_id": {
+    "$oid": "66e7e1c508a8a7e2eb8d1660"
+  },
+  "title": "Top 10 Budget-Friendly Travel Destinations",
+  "content": "Traveling doesn't have to be expensive! Here are the top 10 budget-friendly destinations you can explore without breaking the bank. These locations offer great value for money while providing rich cultural experiences.",
+  "author": {
+    "$oid": "66e7f0e70bcdb4c474c77c06"
+  },
+  "tags": [
+    "Budget Travel",
+    "Adventure",
+    "Cultural Experiences"
+  ],
+  "createdAt": {
+    "$date": "2024-09-15T09:45:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T09:45:00.000Z"
+  },
+  "category": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a0"
+  }
+},
+{
+  "_id": {
+    "$oid": "66e7e1c508a8a7e2eb8d1661"
+  },
+  "title": "Beginner's Guide to CSS Grid Layout",
+  "content": "CSS Grid is a powerful layout system that allows developers to create complex and responsive layouts with ease. This blog will introduce the basics of CSS Grid and show how to create flexible designs using grid-based layouts.",
+  "author": {
+    "$oid": "66e7f0e70bcdb4c474c77c06"
+  },
+  "tags": [
+    "CSS",
+    "CSS Grid",
+    "Web Development"
+  ],
+  "createdAt": {
+    "$date": "2024-09-15T10:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T10:00:00.000Z"
+  },
+  "category": {
+    "$oid": "66e7d3d808a8a7e2eb8d159c"
+  }
+},
+{
+  "_id": {
+    "$oid": "66e7e1c508a8a7e2eb8d1662"
+  },
+  "title": "How to Create a Sustainable Wardrobe",
+  "content": "Building a sustainable wardrobe is about making eco-friendly choices and investing in pieces that last longer. This blog provides practical tips on how to reduce fashion waste and create a wardrobe that is stylish and environmentally conscious.",
+  "author": {
+    "$oid": "66e7f0e70bcdb4c474c77c06"
+  },
+  "tags": [
+    "Sustainable Fashion",
+    "Eco-Friendly",
+    "Wardrobe Tips"
+  ],
+  "createdAt": {
+    "$date": "2024-09-15T10:15:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-15T10:15:00.000Z"
+  },
+  "category": {
+    "$oid": "66e7d3d808a8a7e2eb8d15a7"
+  }
+}]
