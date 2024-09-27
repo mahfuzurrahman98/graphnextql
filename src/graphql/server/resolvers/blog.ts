@@ -10,6 +10,7 @@ import {
 import User from "@/models/User";
 import Category from "@/models/Category";
 import { IBlog, ICategory, IUser } from "@/utils/interfaces";
+import { auth } from "@/auth";
 
 const blogResolvers = {
     Blog: {
@@ -17,7 +18,7 @@ const blogResolvers = {
             try {
                 return await User.findOne({ _id: blog.author });
             } catch (error: any) {
-                console.error("Error fetching blog author:", error);
+                console.error(`{Error fetching blog author: ${error}}`);
                 throw new Error("Failed to fetch blog author");
             }
         },
@@ -25,7 +26,7 @@ const blogResolvers = {
             try {
                 return await Category.findOne({ _id: blog.category });
             } catch (error: any) {
-                console.error("Error fetching blog category:", error);
+                console.error(`{Error fetching blog category: ${error}}`);
                 throw new Error("Failed to fetch blog category");
             }
         },
@@ -49,16 +50,19 @@ const blogResolvers = {
                     args.limit
                 );
             } catch (error: any) {
-                console.error("Error fetching blogs:", error);
+                console.error(`{Error fetching blogs: ${error}}`);
                 throw new Error("Failed to fetch blogs");
             }
         },
 
-        getBlog: async (_parent: any, { id }: { id: string }) => {
+        getBlog: async (
+            _parent: any,
+            { id }: { id: string }
+        ): Promise<IBlog | null> => {
             try {
                 return await getBlogById(id);
             } catch (error: any) {
-                console.error("Error fetching blog:", error);
+                console.error(`{Error fetching blog: ${error}}`);
                 throw new Error("Failed to fetch blog");
             }
         },
@@ -70,27 +74,36 @@ const blogResolvers = {
             {
                 title,
                 content,
-                author,
                 tags,
                 category,
             }: {
                 title: string;
                 content: string;
-                author: string;
                 tags: string[];
                 category: string;
             }
         ): Promise<IBlog> => {
             try {
+                const session = await auth();
+                if (!session?.user) {
+                    throw new Error("User not authenticated 1");
+                }
+
+                const currentUser = session.user;
+                console.log("User authenticated:", currentUser);
+                if (!currentUser.id) {
+                    throw new Error("User not authenticated 2");
+                }
+
                 return await createBlog({
                     title,
                     content,
-                    author,
+                    author: currentUser.id,
                     tags,
                     category,
                 });
             } catch (error: any) {
-                console.error("Error creating blog:", error);
+                console.error(`{Error creating blog: ${error}}`);
                 throw new Error("Failed to create blog");
             }
         },
@@ -122,7 +135,7 @@ const blogResolvers = {
                     category,
                 });
             } catch (error: any) {
-                console.error("Error updating blog:", error);
+                console.error(`{Error updating blog: ${error}}`);
                 throw new Error("Failed to update blog");
             }
         },
@@ -134,7 +147,7 @@ const blogResolvers = {
             try {
                 return await deleteBlog(id);
             } catch (error: any) {
-                console.error("Error deleting blog:", error);
+                console.error(`{Error deleting blog: ${error}}`);
                 throw new Error("Failed to delete blog");
             }
         },

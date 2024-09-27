@@ -10,9 +10,6 @@ const categorySchema: Schema<ICategory> = new Schema(
     { timestamps: true }
 );
 
-// Create an index on the name field
-// categorySchema.index({ name: 1 });
-
 // Check if the model exists, if not create it
 const Category =
     (models.Category as Model<ICategory>) ||

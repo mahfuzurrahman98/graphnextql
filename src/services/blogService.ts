@@ -34,7 +34,7 @@ const getBlogs = async (
         if (category) {
             const categoryDoc = await Category.findOne({ name: category });
             if (categoryDoc) {
-                filter.category = categoryDoc._id; // Filter by category ObjectId
+                filter.category = categoryDoc.id; // Filter by category ObjectId
             } else {
                 return []; // No blogs found if the category does not exist
             }
@@ -47,7 +47,7 @@ const getBlogs = async (
         const blogs = await Blog.find(filter).skip(skip).limit(limit);
         return blogs;
     } catch (error: any) {
-        console.error("Error fetching blogs:", error);
+        console.error(`{Error fetching blogs: ${error}}`);
         throw new Error("Failed to fetch blogs");
     }
 };
@@ -58,11 +58,12 @@ const getBlogs = async (
 const getBlogById = async (id: string): Promise<IBlog | null> => {
     try {
         await connectMongo();
+
         const objectId = new Types.ObjectId(id);
-        const blog = await Blog.findOne({ _id: objectId });
+        const blog: IBlog | null = await Blog.findOne({ _id: objectId });
         return blog;
     } catch (error: any) {
-        console.error("Error fetching blog by ID:", error);
+        console.error(`{Error fetching blog by ID: ${error}}`);
         throw new Error("Failed to fetch blog");
     }
 };
@@ -85,16 +86,16 @@ const createBlog = async ({
 }): Promise<IBlog> => {
     try {
         await connectMongo();
-        const newBlog = new Blog({
+        const newBlog: IBlog = await Blog.create({
             title,
             content,
             author,
             tags,
             category,
         });
-        return await newBlog.save();
+        return newBlog;
     } catch (error: any) {
-        console.error("Error creating blog:", error);
+        console.error(`{Error creating blog: ${error}}`);
         throw new Error("Failed to create blog");
     }
 };
@@ -122,13 +123,13 @@ const updateBlog = async (
         await connectMongo();
         const objectId = new Types.ObjectId(id);
         const updatedBlog = await Blog.findOneAndUpdate(
-            { _id: objectId },
+            { id: objectId },
             { $set: { title, content, author, tags, category } },
             { new: true }
         );
         return updatedBlog;
     } catch (error: any) {
-        console.error("Error updating blog:", error);
+        console.error(`{Error updating blog: ${error}}`);
         throw new Error("Failed to update blog");
     }
 };
@@ -143,7 +144,7 @@ const deleteBlog = async (id: string): Promise<boolean> => {
         const deletedBlog = await Blog.deleteOne({ _id: objectId });
         return deletedBlog.deletedCount > 0;
     } catch (error: any) {
-        console.error("Error deleting blog:", error);
+        console.error(`{Error deleting blog: ${error}}`);
         throw new Error("Failed to delete blog");
     }
 };

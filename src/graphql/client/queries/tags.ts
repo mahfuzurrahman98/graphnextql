@@ -5,7 +5,7 @@ import { gql } from "@apollo/client";
 const GET_TAGS = gql`
     query GetTags {
         getTags {
-            _id
+            id
             name
         }
     }

@@ -11,9 +11,8 @@ import connectMongo from "@/lib/dbConnect";
 (async function () {
     try {
         await connectMongo();
-        console.log("Hello man");
     } catch (error: any) {
-        console.error("Error happenning", error);
+        console.error(`{Error happenning: ${error}}`);
     }
 })();
 

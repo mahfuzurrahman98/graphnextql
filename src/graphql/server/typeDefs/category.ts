@@ -2,7 +2,7 @@
 
 const categoryTypeDefs: string = `#graphql
     type Category {
-        _id: ID!
+        id: ID!
         name: String!
         description: String
     }

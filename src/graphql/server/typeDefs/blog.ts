@@ -4,7 +4,7 @@ const blogTypeDefs: string = `#graphql
     scalar Date    
 
     type Blog {
-        _id: ID!
+        id: ID!
         title: String!
         content: String!
         author: User!
@@ -28,7 +28,6 @@ const blogTypeDefs: string = `#graphql
         createBlog(
             title: String!
             content: String!
-            author: ID!
             tags: [String!]
             category: ID!
         ): Blog

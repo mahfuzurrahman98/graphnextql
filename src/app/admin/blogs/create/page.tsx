@@ -4,8 +4,9 @@ import { createApolloClient } from "@/lib/apolloClient";
 import { GET_TAGS } from "@/graphql/client/queries/tags";
 import { ICategory, ITag } from "@/utils/interfaces";
 import { GET_CATEGORIES } from "@/graphql/client/queries/categories";
+import BlogCreateForm from "@/components/blogs/BlogCreateForm";
 
-const CreateBlog = async () => {
+const CreateBlogPage = async () => {
     const client = createApolloClient();
     let tags: ITag[] = [];
     let categories: ICategory[] = [];
@@ -20,11 +21,7 @@ const CreateBlog = async () => {
     });
     tags = tagsResult.data.getTags;
 
-    return (
-        <div className="container mx-auto">
-            {JSON.stringify(tags, null, 2)}
-        </div>
-    );
+    return <BlogCreateForm categories={categories} tags={tags} />;
 };
 
-export default CreateBlog;
+export default CreateBlogPage;

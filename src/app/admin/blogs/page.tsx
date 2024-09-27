@@ -13,6 +13,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import { IBlog } from "@/utils/interfaces";
 
 export default async function BlogList() {
     const client = createApolloClient();
@@ -46,15 +47,15 @@ export default async function BlogList() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {data.getBlogs.map((blog: any) => (
-                        <TableRow>
+                    {data.getBlogs.map((blog: IBlog) => (
+                        <TableRow key={blog.id}>
                             <TableCell className="font-medium">
                                 {blog.title}
                             </TableCell>
                             <TableCell>{blog.author.name}</TableCell>
                             <TableCell>{blog.category.name}</TableCell>
                             <TableCell className="text-right">
-                                <Link href={`/admin/blogs/${blog._id}/edit`}>
+                                <Link href={`/admin/blogs/${blog.id}/edit`}>
                                     <Button variant="outline">Edit</Button>
                                 </Link>
                             </TableCell>

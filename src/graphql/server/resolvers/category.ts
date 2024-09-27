@@ -13,7 +13,7 @@ const categoryResolvers = {
                 const categories: ICategory[] = await getCategories();
                 return categories;
             } catch (error: any) {
-                console.error("Error in resolver getCategories:", error);
+                console.error(`{Error in resolver getCategories: ${error}}`);
                 return [];
             }
         },
@@ -25,7 +25,7 @@ const categoryResolvers = {
                 await connectMongo();
                 return await Category.findById(id);
             } catch (error: any) {
-                console.error("Error in resolver getCategory:", error);
+                console.error(`{Error in resolver getCategory: ${error}}`);
                 return null;
             }
         },

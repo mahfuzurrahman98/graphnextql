@@ -13,10 +13,10 @@ const getTags = async (): Promise<ITag[]> => {
     try {
         await connectMongo();
 
-        const tags = await Tag.find();
+        const tags: ITag[] = await Tag.find();
         return tags;
     } catch (error: any) {
-        console.error("Error fetching tags:", error);
+        console.error(`{Error fetching tags: ${error}}`);
         throw new Error("Failed to fetch tags");
     }
 };

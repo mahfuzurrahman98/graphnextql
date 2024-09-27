@@ -38,7 +38,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
             <CardFooter className="flex justify-between items-center">
                 <Badge>{blog.category.name}</Badge>
                 <Link
-                    href={`/${blog._id}`}
+                    href={`/${blog.id}`}
                     className="text-primary hover:underline"
                 >
                     Read more

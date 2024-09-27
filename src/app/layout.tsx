@@ -1,14 +1,7 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import Footer from "@/components/layouts/Footer";
-import Header from "@/components/layouts/Header";
-
-const montserrat = Montserrat({
-    subsets: ["latin"],
-    variable: "--font-montserrat",
-});
 
 export const metadata: Metadata = {
     title: "BlogNext",
@@ -22,7 +15,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={montserrat.className}>
+            <body className={GeistSans.className}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"

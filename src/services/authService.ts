@@ -9,7 +9,7 @@ const getUser = async (
 ): Promise<IUser | null> => {
     try {
         await connectMongo();
-        const foundUser = await User.findOne({
+        const foundUser: IUser | null = await User.findOne({
             email,
         });
 
@@ -23,7 +23,7 @@ const getUser = async (
 
         return foundUser;
     } catch (error: any) {
-        console.error("Error fetching user:", error);
+        console.error(`{Error fetching user: ${error}}`);
         throw error;
     }
 };

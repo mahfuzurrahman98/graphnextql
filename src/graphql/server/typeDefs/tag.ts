@@ -2,7 +2,7 @@
 
 const tagTypeDefs: string = `#graphql
     type Tag {
-        _id: ID!
+        id: ID!
         name: String!
     }
 

@@ -5,7 +5,7 @@ import { mergeTypeDefs } from "@graphql-tools/merge";
 import userTypeDefs from "@/graphql/server/typeDefs/user";
 import categoryTypeDefs from "@/graphql/server/typeDefs/category";
 import blogTypeDefs from "@/graphql/server/typeDefs/blog";
-import tagTypeDefs from "./tag";
+import tagTypeDefs from "@/graphql/server/typeDefs/tag";
 
 // Merge the type definitions into one
 const typeDefs = mergeTypeDefs([

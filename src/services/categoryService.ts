@@ -13,10 +13,11 @@ const getCategories = async (): Promise<ICategory[]> => {
     try {
         await connectMongo();
 
-        const categories = await Category.find();
+        const categories: ICategory[] = await Category.find();
+        categories[0].id;
         return categories;
     } catch (error: any) {
-        console.error("Error fetching categories:", error);
+        console.error(`{Error fetching categories: ${error}}`);
         throw new Error("Failed to fetch categories");
     }
 };

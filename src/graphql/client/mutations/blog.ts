@@ -4,18 +4,16 @@ const CREATE_BLOG = gql`
     mutation CreateBlog(
         $title: String!
         $content: String!
-        $author: ID!
         $tags: [String!]
         $category: ID!
     ) {
         createBlog(
             title: $title
             content: $content
-            author: $author
             tags: $tags
             category: $category
         ) {
-            _id
+            id
             title
             content
             author {
@@ -47,7 +45,7 @@ const UPDATE_BLOG = gql`
             tags: $tags
             category: $category
         ) {
-            _id
+            id
             title
             content
             author {
@@ -65,7 +63,7 @@ const UPDATE_BLOG = gql`
 const DELETE_BLOG = gql`
     mutation DeleteBlog($id: ID!) {
         deleteBlog(id: $id) {
-            _id
+            id
             title
             content
             author {

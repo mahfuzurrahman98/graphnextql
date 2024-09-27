@@ -4,7 +4,7 @@ import { gql } from "@apollo/client";
 const GET_BLOGS = gql`
     query GetBlogs($q: String, $category: String, $page: Int, $limit: Int) {
         getBlogs(q: $q, category: $category, page: $page, limit: $limit) {
-            _id
+            id
             title
             content
             author {
@@ -22,7 +22,7 @@ const GET_BLOGS = gql`
 const GET_BLOG_BY_ID = gql`
     query GetBlog($id: ID!) {
         getBlog(id: $id) {
-            _id
+            id
             title
             content
             author {

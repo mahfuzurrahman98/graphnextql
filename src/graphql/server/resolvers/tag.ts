@@ -12,7 +12,7 @@ const tagResolvers = {
                 const tags: ITag[] = await getTags();
                 return tags;
             } catch (error: any) {
-                console.error("Error in resolver getTags:", error);
+                console.error(`{Error in resolver getTags: ${error}}`);
                 return [];
             }
         },

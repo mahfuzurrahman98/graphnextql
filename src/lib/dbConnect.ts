@@ -38,7 +38,7 @@ async function connectMongo() {
         cached.connection = await cached.promise;
         console.log("MongoDB connected successfully.");
     } catch (error: any) {
-        console.error("Error connecting to MongoDB:", error);
+        console.error(`{Error connecting to MongoDB: ${error}}`);
         cached.promise = undefined; // Reset promise to allow retry on failure
         throw error;
     }
