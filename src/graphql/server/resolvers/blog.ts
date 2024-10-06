@@ -2,6 +2,7 @@
 
 import {
     getBlogs,
+    getTotalNoOfBlogs,
     getBlogById,
     createBlog,
     updateBlog,
@@ -55,6 +56,24 @@ const blogResolvers = {
             }
         },
 
+        getTotalNoOfBlogs: async (
+            _parent: any,
+            args: {
+                q?: string;
+                category?: string;
+            }
+        ): Promise<number> => {
+            try {
+                return await getTotalNoOfBlogs(
+                    args.q,
+                    args.category == "all" ? undefined : args.category
+                );
+            } catch (error: any) {
+                console.error(`{Error fetching total no. of blogs: ${error}}`);
+                throw new Error("Failed to fetch total no. of blogs");
+            }
+        },
+
         getBlog: async (
             _parent: any,
             { id }: { id: string }
@@ -90,7 +109,6 @@ const blogResolvers = {
                 }
 
                 const currentUser = session.user;
-                console.log("User authenticated:", currentUser);
                 if (!currentUser.id) {
                     throw new Error("User not authenticated 2");
                 }
@@ -114,23 +132,31 @@ const blogResolvers = {
                 id,
                 title,
                 content,
-                author,
                 tags,
                 category,
             }: {
                 id: string;
                 title: string;
                 content: string;
-                author: string;
                 tags: string[];
                 category: string;
             }
         ): Promise<IBlog | null> => {
             try {
+                const session = await auth();
+                if (!session?.user) {
+                    throw new Error("User not authenticated 1");
+                }
+
+                const currentUser = session.user;
+                if (!currentUser.id) {
+                    throw new Error("User not authenticated 2");
+                }
+
                 return await updateBlog(id, {
                     title,
                     content,
-                    author,
+                    author: currentUser.id,
                     tags,
                     category,
                 });

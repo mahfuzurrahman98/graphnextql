@@ -34,7 +34,7 @@ export default function AdminHeader() {
             <div className="max-w-[1200px] mx-auto px-4 md:px-0 py-4 flex justify-between items-center">
                 <Link
                     href="/admin"
-                    className="text-2xl font-bold hover:text-primary transition-colors"
+                    className="text-3xl font-bold hover:text-primary transition-colors"
                 >
                     BlogNext
                 </Link>
@@ -45,7 +45,7 @@ export default function AdminHeader() {
                     >
                         Home
                     </Link>
-                    <Button variant="destructive" onClick={handleLogout}>
+                    <Button size={"sm"} variant="destructive" onClick={handleLogout}>
                         Logout
                     </Button>
                     <ModeToggle />

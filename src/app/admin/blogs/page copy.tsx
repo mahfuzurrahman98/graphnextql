@@ -1,7 +1,10 @@
-// Import necessary types and components
-import { SearchParamsType } from "@/utils/types";
-import Link from "next/link";
+import {
+    GET_BLOGS,
+    GET_TOTAL_NO_OF_BLOGS,
+} from "@/graphql/client/queries/blogs";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { createApolloClient } from "@/lib/apolloClient";
 import {
     Table,
     TableBody,
@@ -14,78 +17,45 @@ import {
 import { IBlog } from "@/utils/interfaces";
 import { FilePenLine, Pencil } from "lucide-react";
 import BlogPagination from "@/components/blogs/BlogPagination";
+import { SearchParamsType } from "@/utils/types";
+// import DeleteBlogButton from "@/components/blogs/DeleteBlogButton";
 
-// Import GraphQL client and queries
-import { createApolloClient } from "@/lib/apolloClient";
-import {
-    GET_BLOGS,
-    GET_TOTAL_NO_OF_BLOGS,
-} from "@/graphql/client/queries/blogs";
-import DeleteBlogButton from "@/components/blogs/DeleteBlogButton";
-import { revalidatePath } from "next/cache";
-
-/**
- * Fetches blogs based on search parameters.
- *
- * @param {SearchParamsType} searchParams - Search parameters (q, category, page, limit)
- * @returns {Promise<{ blogs: IBlog[], totalBlogs: number }>} - Blogs and total number of blogs
- */
-async function fetchBlogs(searchParams: SearchParamsType) {
-    const { q = "", category = "all", page = 1, limit = 3 } = searchParams;
-
-    // Create an instance of the Apollo Client
-    const client = createApolloClient();
-
-    try {
-        // Fetch blogs and total number of blogs in parallel
-        const [blogsResult, totalBlogsResult] = await Promise.all([
-            client.query({
-                query: GET_BLOGS,
-                variables: {
-                    q,
-                    category,
-                    page: Number(page),
-                    limit: Number(limit),
-                },
-            }),
-            client.query({
-                query: GET_TOTAL_NO_OF_BLOGS,
-                variables: { q, category },
-            }),
-        ]);
-
-        // Return the fetched blogs and total number of blogs
-        return {
-            blogs: blogsResult.data.getBlogs,
-            totalBlogs: totalBlogsResult.data.getTotalNoOfBlogs,
-        };
-    } catch (error) {
-        // Log and rethrow any errors that occur during fetching
-        console.error("Error fetching blogs:", error);
-        throw new Error("Failed to fetch blogs");
-    }
-}
-
-const handleDeleteSuccess = async () => {
-    "use server";
-    revalidatePath("/admin/blogs");
-};
-
-/**
- * Blog list component.
- *
- * @param {SearchParamsType} searchParams - Search parameters (q, category, page, limit)
- * @returns {JSX.Element} - Blog list component
- */
-export default async function BlogList({
+const BlogList = async ({
     searchParams,
 }: {
     searchParams?: SearchParamsType;
-}) {
-    // Fetch blogs based on search parameters
-    const { blogs, totalBlogs } = await fetchBlogs(searchParams || {});
+}) => {
+    const {
+        q = "",
+        category = "all",
+        page = 1,
+        limit = 3,
+    } = searchParams || {};
 
-    // Render the blog list component
+    let blogs: IBlog[] = [];
+
+    const client = createApolloClient();
+
+    const blogsResult = await client.query({
+        query: GET_BLOGS,
+        variables: {
+            q,
+            category,
+            page: page ? Number(page) : 1,
+            limit: limit ? Number(limit) : 3,
+        },
+    });
+    blogs = blogsResult.data.getBlogs;
+
+    const getTotalNoOfBlogsResult = await client.query({
+        query: GET_TOTAL_NO_OF_BLOGS,
+        variables: {
+            q,
+            category,
+        },
+    });
+    const totalBlogs = getTotalNoOfBlogsResult.data.getTotalNoOfBlogs;
+
     return (
         <div className="max-w-4xl">
             <div className="flex flex-col-reverse md:flex-row justify-between md:items-center gap-y-5 mb-6">
@@ -123,20 +93,20 @@ export default async function BlogList({
                             </TableCell>
                             <TableCell>{blog.category.name}</TableCell>
                             <TableCell>{blog.author.name}</TableCell>
-                            <TableCell className="flex justify-end gap-x-2">
+                            <TableCell className="text-right space-x-2">
                                 <Button variant="outline" size="sm" asChild>
                                     <Link
                                         href={`/admin/blogs/${blog.id}/edit`}
                                         className="flex items-center text-sm"
                                     >
-                                        <Pencil className="w-4 h-4" />
+                                        <Pencil className="w-4 h-4 mr-2" />
+                                        Edit
                                     </Link>
                                 </Button>
-                                <DeleteBlogButton
+                                {/* <DeleteBlogButton
                                     blogId={blog.id}
                                     blogTitle={blog.title}
-                                    onDeleteSuccess={handleDeleteSuccess}
-                                />
+                                /> */}
                             </TableCell>
                         </TableRow>
                     ))}
@@ -147,4 +117,6 @@ export default async function BlogList({
             </div>
         </div>
     );
-}
+};
+
+export default BlogList;

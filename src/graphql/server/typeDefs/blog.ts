@@ -21,6 +21,9 @@ const blogTypeDefs: string = `#graphql
             page: Int
             limit: Int
         ): [Blog!]
+
+        getTotalNoOfBlogs(q: String, category: String): Int
+        
         getBlog(id: ID!): Blog
     }
 

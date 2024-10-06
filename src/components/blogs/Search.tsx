@@ -24,6 +24,8 @@ export const Search: FC<SearchProps> = ({ categoryOptions }) => {
     const [searchData, setSearchData] = useState<SearchParamsType>({
         q: searchParams.get("q") || "",
         category: searchParams.get("category") || "",
+        page: Number(searchParams.get("page")) || 1,
+        limit: Number(searchParams.get("limit")) || 10,
     });
 
     const updateSearchParams = () => {

@@ -12,12 +12,13 @@ import { Types } from "mongoose";
  * Pagination is applied.
  */
 const getBlogs = async (
-    q = "",
-    category = "",
-    page = 1,
-    limit = 10
+    q: string = "",
+    category: string = "",
+    page: number = 1,
+    limit: number = 10
 ): Promise<IBlog[]> => {
     try {
+        console.log("fetching blogs");
         await connectMongo();
         const filter: any = {};
 
@@ -49,6 +50,46 @@ const getBlogs = async (
     } catch (error: any) {
         console.error(`{Error fetching blogs: ${error}}`);
         throw new Error("Failed to fetch blogs");
+    }
+};
+
+/**
+ * Fetch total number of blogs.
+ * If category is defined, only blogs from that category will be counted.
+ */
+const getTotalNoOfBlogs = async (
+    q: string = "",
+    category: string = ""
+): Promise<number> => {
+    try {
+        await connectMongo();
+        const filter: any = {};
+
+        // If a search query (q) is provided, search for it in title, content, or tags
+        if (q) {
+            filter.$or = [
+                { title: { $regex: q, $options: "i" } }, // Case-insensitive title search
+                { content: { $regex: q, $options: "i" } }, // Case-insensitive content search
+                { tags: { $in: [q] } }, // Check if q is in tags
+            ];
+        }
+
+        // If a category is provided, filter blogs by that category
+        if (category) {
+            const categoryDoc = await Category.findOne({ name: category });
+            if (categoryDoc) {
+                filter.category = categoryDoc.id; // Filter by category ObjectId
+            } else {
+                return 0; // No blogs found if the category does not exist
+            }
+        }
+
+        // Count the number of blogs with optional filters
+        const count = await Blog.countDocuments(filter);
+        return count;
+    } catch (error: any) {
+        console.error(`{Error fetching number of blogs: ${error}}`);
+        throw new Error("Failed to fetch number of blogs");
     }
 };
 
@@ -122,14 +163,19 @@ const updateBlog = async (
     try {
         await connectMongo();
         const objectId = new Types.ObjectId(id);
+
         const updatedBlog = await Blog.findOneAndUpdate(
-            { id: objectId },
-            { $set: { title, content, author, tags, category } },
-            { new: true }
+            { _id: objectId }, // Use _id instead of id
+            { $set: { title, content, author, tags, category } }, // Use $set to update fields
+            { new: true, runValidators: true } // Return the updated document and run validators
         );
+
+        if (!updatedBlog) {
+            throw new Error("Blog not found or not updated");
+        }
         return updatedBlog;
     } catch (error: any) {
-        console.error(`{Error updating blog: ${error}}`);
+        console.error(`Error updating blog: ${error}`);
         throw new Error("Failed to update blog");
     }
 };
@@ -149,4 +195,11 @@ const deleteBlog = async (id: string): Promise<boolean> => {
     }
 };
 
-export { getBlogs, getBlogById, createBlog, updateBlog, deleteBlog };
+export {
+    getBlogs,
+    getTotalNoOfBlogs,
+    getBlogById,
+    createBlog,
+    updateBlog,
+    deleteBlog,
+};

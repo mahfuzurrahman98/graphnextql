@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ICategory, ITag } from "@/utils/interfaces";
+import { ICategory, ITag, IBlog } from "@/utils/interfaces";
 import {
     Form,
     FormControl,
@@ -24,10 +24,9 @@ import { z } from "zod";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CreatableSelect from "react-select/creatable";
-import { CREATE_BLOG } from "@/graphql/client/mutations/blog";
+import { UPDATE_BLOG } from "@/graphql/client/mutations/blog";
 import { createApolloClient } from "@/lib/apolloClient";
 import { toast } from "@/hooks/use-toast";
-import { useSession } from "next-auth/react";
 
 const client = createApolloClient();
 
@@ -42,13 +41,18 @@ const blogSchema = z.object({
 
 type TagOption = { value: string; label: string };
 
-export default function BlogCreateForm({
-    categories,
-    tags,
-}: {
+interface BlogEditFormProps {
+    blog: IBlog;
     categories: ICategory[];
     tags: ITag[];
-}) {
+}
+
+export default function BlogEditForm({
+    blog,
+    categories,
+    tags,
+}: BlogEditFormProps) {
+    console.log("Blog:", blog);
     const [availableTags, setAvailableTags] = useState<TagOption[]>(
         tags.map((tag) => ({ value: tag.id, label: tag.name }))
     );
@@ -56,10 +60,13 @@ export default function BlogCreateForm({
     const form = useForm<z.infer<typeof blogSchema>>({
         resolver: zodResolver(blogSchema),
         defaultValues: {
-            title: "",
-            content: "",
-            category: "",
-            tags: [],
+            title: blog.title,
+            content: blog.content,
+            category: blog.category.id,
+            tags: blog.tags.map((tag: string, index: number) => ({
+                value: tag,
+                label: tag,
+            })),
         },
     });
 
@@ -68,8 +75,9 @@ export default function BlogCreateForm({
             console.log("Form submitted with values:", values);
 
             const result = await client.mutate({
-                mutation: CREATE_BLOG,
+                mutation: UPDATE_BLOG,
                 variables: {
+                    id: blog.id,
                     title: values.title,
                     content: values.content,
                     category: values.category,
@@ -79,15 +87,14 @@ export default function BlogCreateForm({
 
             toast({
                 title: "Success",
-                description: "Blog created successfully",
+                description: "Blog updated successfully",
             });
-
-            form.reset();
         } catch (error: any) {
-            console.error(`Error creating blog: ${error}`);
+            console.error(`Error updating blog: ${error}`);
             toast({
                 title: "Error",
                 description: error.message,
+                variant: "destructive",
             });
         }
     };
@@ -205,7 +212,7 @@ export default function BlogCreateForm({
                     )}
                 />
 
-                <Button type="submit">Create Blog Post</Button>
+                <Button type="submit">Update Blog Post</Button>
             </form>
         </Form>
     );
